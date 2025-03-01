@@ -11,10 +11,12 @@ enum Type {
 }
 
 @export var type: Type
+var anim: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_children()[0].play(get_spritesheet_name())
+	anim = get_children()[0]
+	anim.play(get_spritesheet_name())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,3 +43,7 @@ func get_spritesheet_name() -> String:
 		_:
 			push_error("Unknown item type")
 			return ""
+
+
+func destroy():
+	anim.play("destroy")
