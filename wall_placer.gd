@@ -1,6 +1,6 @@
 extends Node2D
 
-const _wall_rotation_possible_positions := 20
+const _wall_rotation_possible_positions := 12
 const _wall_life_time := 10
 
 var _preview_sprite : Sprite2D
@@ -8,6 +8,7 @@ var _wall_container : Node2D
 var _level_camera : Camera2D
 
 var SC_wall_straight := preload("res://WallStraight.tscn")
+
 
 func _ready() -> void:
 	_preview_sprite = get_node("WallPreviewSprite")
