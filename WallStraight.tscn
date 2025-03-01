@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://tudpnhmm8yxh"]
 
 [ext_resource type="Script" path="res://wall.gd" id="1_acu3m"]
-[ext_resource type="Texture2D" uid="uid://u05ph3irbn1r" path="res://assets/walls/straight.png" id="1_jkp1i"]
+[ext_resource type="Texture2D" uid="uid://bwejtd0qkk6qv" path="res://assets/walls/straight.png" id="1_jkp1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ocuq"]
-size = Vector2(32, 5)
+size = Vector2(64, 8)
 
 [node name="WallStraight" type="Node2D"]
 script = ExtResource("1_acu3m")
@@ -15,11 +15,11 @@ gravity_scale = 0.0
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
 [node name="PreviewCollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3ocuq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3ocuq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
