@@ -9,5 +9,3 @@ script = ExtResource("1_ja7mv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1mymc")
-
-[node name="SurvivingPlayer" type="Node2D" parent="."]

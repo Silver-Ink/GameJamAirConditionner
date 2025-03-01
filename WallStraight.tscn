@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://tudpnhmm8yxh"]
+
+[ext_resource type="Script" path="res://wall.gd" id="1_acu3m"]
+[ext_resource type="Texture2D" uid="uid://dt16m5ba6wdyw" path="res://assets/walls/straight.png" id="1_jkp1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ocuq"]
+size = Vector2(32, 5)
+
+[node name="WallStraight" type="Node2D"]
+script = ExtResource("1_acu3m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3ocuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jkp1i")
