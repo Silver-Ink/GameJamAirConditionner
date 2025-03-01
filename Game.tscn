@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0vjy050wrxjr"]
+
+[ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
+[ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
+
+[node name="Game" type="Node2D"]
+
+[node name="SurvivingPlayer" parent="." instance=ExtResource("1_nsf7f")]
+position = Vector2(321, 155)
+
+[node name="WallPlacer" parent="." instance=ExtResource("2_nw2we")]
+position = Vector2(-318, -256)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
