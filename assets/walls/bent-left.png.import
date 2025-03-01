@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr26e6h4r2gxt"
-path="res://.godot/imported/bent-left.png-23b5b287e85dc552b40c1658658f12e6.ctex"
+path="res://.godot/imported/bent-left.png-c7495c98159f28405c6ddce9078c72ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/walls/bent-left.png"
-dest_files=["res://.godot/imported/bent-left.png-23b5b287e85dc552b40c1658658f12e6.ctex"]
+source_file="res://Assets/walls/bent-left.png"
+dest_files=["res://.godot/imported/bent-left.png-c7495c98159f28405c6ddce9078c72ea.ctex"]
 
 [params]
 

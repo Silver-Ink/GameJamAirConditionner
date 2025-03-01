@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0vjy050wrxjr"]
+[gd_scene load_steps=4 format=3 uid="uid://c0vjy050wrxjr"]
 
 [ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
 [ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
+[ext_resource type="PackedScene" uid="uid://dgvgtscg7erlc" path="res://slime.tscn" id="3_u04jm"]
 
 [node name="Game" type="Node2D"]
 
@@ -14,3 +15,6 @@ position = Vector2(-318, -256)
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 zoom = Vector2(2, 2)
+
+[node name="Slime" parent="." instance=ExtResource("3_u04jm")]
+position = Vector2(47, 93)

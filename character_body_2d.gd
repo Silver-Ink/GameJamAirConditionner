@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		velocity = directionnal_speed
 		
 		rotation_target = direction_vect.angle()
-		var angle = lerp_angle(rotation, rotation_target, delta*20)
+		var angle = lerp_angle(rotation, rotation_target, delta*5)
 		rotation = angle
 		#soft_body.rotation = angle
 		#soft_body.constant_torque = angle
