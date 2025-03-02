@@ -4,6 +4,11 @@ const _wall_rotation_possible_positions := 12
 const _wall_life_time := 10
 const _wall_place_cooldown := 2
 
+const soundbank = [
+	"scratch1",
+	"scratch2"
+]
+
 var _cursor : Cursor
 var _preview_wall : Wall
 var _wall_container : Node2D
@@ -13,9 +18,18 @@ var _can_place_wall : bool = true
 var _is_place_in_cooldown : bool = false
 
 var SC_wall_straight := preload("res://WallStraight.tscn")
+var SC_wall_dirac := preload("res://WallDirac.tscn")
+var SC_wall_tilde := preload("res://WallTilde.tscn")
+var SC_wall_u := preload("res://WallU.tscn")
+var SC_wall_wide_u := preload("res://WallWideU.tscn")
+
 var SC_cursor := preload("res://Cursor.tscn")
 
+var effects_player: AudioStreamPlayer
+
 func _ready() -> void:
+	effects_player = get_node("EffectsPlayer")
+	
 	# Hide real cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
@@ -62,8 +76,12 @@ func _place_wall():
 	var new_wall := SC_wall_straight.instantiate()
 	new_wall.position = _preview_wall.position
 	new_wall.rotation = _preview_wall.rotation
-	new_wall.get_node("RigidBody2D/Area2D/PreviewCollisionShape2D").set_deferred("disabled", true)
+	new_wall.get_node("RigidBody2D/Area2D/PreviewCollision").set_deferred("disabled", true)
 	_wall_container.add_child(new_wall)
+	
+	effects_player.stream = load("res://assets/sounds/walls/%s.mp3" % soundbank[randi() % soundbank.size()])
+	effects_player.play()
+	
 	new_wall.get_tree().create_timer(_wall_life_time).timeout.connect(new_wall.initiate_wall_destroy)
 	
 	# Initiate cooldown on wall place

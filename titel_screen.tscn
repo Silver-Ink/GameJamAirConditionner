@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://chtejwyiwus3t"]
+
+[ext_resource type="FontFile" uid="uid://csrffm6wv1hp3" path="res://assets/Font-GrapeSoda.ttf" id="1_4g5e3"]
+[ext_resource type="Theme" uid="uid://b3qn60h1iw1g" path="res://main_screen.tres" id="1_oda6m"]
+
+[node name="TitelScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sections" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_oda6m")
+
+[node name="Header" type="HBoxContainer" parent="ColorRect/Sections"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="InfosContainer" type="CenterContainer" parent="ColorRect/Sections/Header"]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 2
+
+[node name="Infos" type="Label" parent="ColorRect/Sections/Header/InfosContainer"]
+custom_minimum_size = Vector2(350, 15)
+layout_mode = 2
+text = "Les Short Staffed 2 - WonderJam 2025"
+
+[node name="TitleWrapper" type="CenterContainer" parent="ColorRect/Sections"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/Sections/TitleWrapper"]
+custom_minimum_size = Vector2(430, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Frontières"
+
+[node name="MenuWrapper" type="CenterContainer" parent="ColorRect/Sections"]
+layout_mode = 2
+
+[node name="Menu" type="HBoxContainer" parent="ColorRect/Sections/MenuWrapper"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Start" type="Button" parent="ColorRect/Sections/MenuWrapper/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4g5e3")
+theme_override_font_sizes/font_size = 50
+text = "Start"
+
+[node name="Tutorial" type="Button" parent="ColorRect/Sections/MenuWrapper/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4g5e3")
+theme_override_font_sizes/font_size = 50
+text = "Tutorial"
+
+[node name="Credits" type="Button" parent="ColorRect/Sections/MenuWrapper/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4g5e3")
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+
+[node name="Exit" type="Button" parent="ColorRect/Sections/MenuWrapper/Menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4g5e3")
+theme_override_font_sizes/font_size = 50
+text = "Exit"

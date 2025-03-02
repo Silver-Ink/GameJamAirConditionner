@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ncxktq3m3vvt"]
+
+[ext_resource type="Script" path="res://wall.gd" id="1_xi2lp"]
+[ext_resource type="Texture2D" uid="uid://c1h8xcge4r302" path="res://assets/walls/u.png" id="2_aqoil"]
+
+[node name="WallU" type="Node2D"]
+script = ExtResource("1_xi2lp")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+
+[node name="PreviewCollision" type="CollisionPolygon2D" parent="RigidBody2D/Area2D"]
+polygon = PackedVector2Array(-62, -32, -57, -32, -56, -31, -51, -14, -39, 6, -28, 15, -18, 20, -6, 23, 0, 24, 6, 23, 18, 20, 28, 15, 39, 6, 51, -14, 56, -31, 57, -32, 62, -32, 64, -29, 64, -25, 60, -11, 55, -1, 48, 9, 38, 19, 21, 29, 9, 32, -9, 32, -21, 29, -38, 19, -48, 9, -55, -1, -60, -11, -64, -25, -64, -29)
+
+[node name="RegularCollision" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-62, -32, -57, -32, -56, -31, -51, -14, -39, 6, -28, 15, -18, 20, -6, 23, 0, 24, 6, 23, 18, 20, 28, 15, 39, 6, 51, -14, 56, -31, 57, -32, 62, -32, 64, -29, 64, -25, 60, -11, 55, -1, 48, 9, 38, 19, 21, 29, 9, 32, -9, 32, -21, 29, -38, 19, -48, 9, -55, -1, -60, -11, -64, -25, -64, -29)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aqoil")

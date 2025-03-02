@@ -6,3 +6,5 @@
 script = ExtResource("1_dqwkw")
 
 [node name="WallContainer" type="Node2D" parent="."]
+
+[node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]

@@ -26,7 +26,7 @@ const item_sounds := {
 	ItemType.HEART: ["heart-beat", "sparkles", "chime-sparkles"],
 	ItemType.BLOB: ["dégueu", "dégueu2", "crunchy-bite", "dead", "bo-womp"],
 	ItemType.SONIC: ["sonic-spring", "jump", "bongo-feet", "uiou"],
-	ItemType.SQUARE: ["wopi", "dead", "cartoon_sound_effect"]
+	ItemType.SQUARE: ["wopi", "dead", "cartoon_sound_effect", "metal-pipe", "ou", "fart"]
 }
 
 # Called when the node enters the scene tree for the first time.
