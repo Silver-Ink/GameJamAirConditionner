@@ -51,6 +51,11 @@ var credits = [
 		"Matthieu",
 		"Martin",
 	],[
+		"Polices",
+		"GrapeSoda",
+		"https://www.dafont.com/grapesoda-2.font"
+	],
+	[
 		"Tools used",
 		"Developed with Godot Engine",
 		"https://godotengine.org/license",
