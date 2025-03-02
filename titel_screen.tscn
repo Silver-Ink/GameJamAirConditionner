@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://chtejwyiwus3t"]
+[gd_scene load_steps=5 format=3 uid="uid://chtejwyiwus3t"]
 
 [ext_resource type="FontFile" uid="uid://csrffm6wv1hp3" path="res://assets/Font-GrapeSoda.ttf" id="1_4g5e3"]
+[ext_resource type="Script" path="res://titel_screen.gd" id="1_dwbdc"]
 [ext_resource type="Theme" uid="uid://b3qn60h1iw1g" path="res://main_screen.tres" id="1_oda6m"]
+[ext_resource type="FontFile" uid="uid://bgil4ogustkiw" path="res://assets/GrapeSodaNerdFont-Regular.ttf" id="4_r7oqi"]
 
 [node name="TitelScreen" type="Control"]
 layout_mode = 3
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_dwbdc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -86,3 +89,59 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4g5e3")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
+
+[node name="Popup" type="Popup" parent="ColorRect"]
+initial_position = 1
+size = Vector2i(800, 600)
+visible = true
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/Popup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[node name="Sections" type="VBoxContainer" parent="ColorRect/Popup/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oda6m")
+alignment = 1
+
+[node name="Text" type="CenterContainer" parent="ColorRect/Popup/ColorRect/Sections"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/Popup/ColorRect/Sections/Text"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_r7oqi")
+theme_override_font_sizes/font_size = 36
+text = "One is ⬤.
+Other is 🖉.
+
+⬤ want 𝕤𝕙𝕚𝕟𝕪 𝕥𝕙𝕚𝕟𝕘.
+🖉 no want ball get 𝕤𝕙𝕚𝕟𝕪 𝕥𝕙𝕚𝕟𝕘.
+
+🖉 make wall.
+🖉 block ball wall.
+
+⬤ get shiny : ⬤ win
+🖉 block ball long time : 🖉 win."
+
+[node name="Button" type="CenterContainer" parent="ColorRect/Popup/ColorRect/Sections"]
+layout_mode = 2
+
+[node name="Ok" type="Button" parent="ColorRect/Popup/ColorRect/Sections/Button"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Ok"
+
+[connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Tutorial" to="." method="_on_tutorial_button_up"]
+[connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Exit" to="." method="_on_exit_button_up"]
+[connection signal="button_up" from="ColorRect/Popup/ColorRect/Sections/Button/Ok" to="." method="_on_popup_ok_button_up"]
