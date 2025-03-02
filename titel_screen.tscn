@@ -140,6 +140,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Ok"
 
+[connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Tutorial" to="." method="_on_tutorial_button_up"]
+[connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Credits" to="." method="_on_credits_button_up"]
 [connection signal="button_up" from="ColorRect/Sections/MenuWrapper/Menu/Exit" to="." method="_on_exit_button_up"]
 [connection signal="button_up" from="ColorRect/Popup/ColorRect/Sections/Button/Ok" to="." method="_on_popup_ok_button_up"]
