@@ -1,1 +1,1 @@
-class_name AudioPlayer extends AudioStreamPlayer
+class_name SAM extends AudioStreamPlayer
