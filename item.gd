@@ -14,13 +14,24 @@ enum Type {
 var anim: ItemSprite
 var appearing: bool = false
 var item_scale := 0.0
+var player: AudioStreamPlayer
+
+const item_sounds := {
+	Type.APPLE: ["bo-womp", "cartoon-boing", "crunchy-bite"],
+	Type.FISH: ["fish", "uiou", "jump", "cartoon_bite_sound_effect"],
+	Type.HEART: ["heart", "heart-beat", "sparkles", "chime-sparkles"],
+	Type.BLOB: ["dégueu", "dégueu2", "crunchy-bite", "dead", "bo-womp"],
+	Type.SONIC: ["sonic-spring", "jump", "bongo-feet", "uiou"],
+	Type.SQUARE: ["wopi", "dead"]
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_children().filter(func(child): return child is Before).front().play("default")
 	anim = get_children().filter(func(child): return child is ItemSprite).front()
-	anim.play(get_spritesheet_name())
+	anim.play(item_name())
 	anim.scale = Vector2(item_scale, item_scale)
+	player = get_children().filter(func(child): return child is AudioPlayer).front()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,9 +42,11 @@ func _process(delta: float) -> void:
 			item_scale += 0.15
 		else:
 			appearing = false
+			player.stream = load("res://assets/sounds/items/%s.wav" % item_name())
+			player.play()
 
 
-func get_spritesheet_name() -> String:
+func item_name() -> String:
 	match type:
 		Type.APPLE:
 			return "apple"
@@ -55,6 +68,9 @@ func get_spritesheet_name() -> String:
 
 
 func destroy():
+	var possible_sounds: Array = item_sounds[type]
+	player.stream = load("res://assets/sounds/items/%s.mp3" % possible_sounds[randi() % possible_sounds.size()])
+	player.play()
 	anim.play("destroy")
 
 
