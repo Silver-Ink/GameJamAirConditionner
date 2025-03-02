@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0vjy050wrxjr"]
+[gd_scene load_steps=8 format=3 uid="uid://c0vjy050wrxjr"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_72g1l"]
 [ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
 [ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
-[ext_resource type="PackedScene" uid="uid://dgvgtscg7erlc" path="res://slime.tscn" id="3_raclx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfl1q"]
 normal = Vector2(1, 0)
@@ -46,5 +45,3 @@ shape = SubResource("WorldBoundaryShape2D_sv7m4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCollisionStaticBody"]
 position = Vector2(320, 360)
 shape = SubResource("WorldBoundaryShape2D_n0air")
-
-[node name="Slime" parent="." instance=ExtResource("3_raclx")]
