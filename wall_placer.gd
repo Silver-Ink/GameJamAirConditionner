@@ -2,7 +2,7 @@ extends Node2D
 
 const _wall_rotation_possible_positions := 12
 const _wall_life_time := 10
-const _wall_place_cooldown := 2
+const _wall_place_cooldown := 1
 
 const soundbank = [
 	"scratch1",
@@ -17,11 +17,14 @@ var _level_camera : Camera2D
 var _can_place_wall : bool = true
 var _is_place_in_cooldown : bool = false
 
+var _current_wall_type := GE.WallType.STRAIGHT
+
 var SC_wall_straight := preload("res://WallStraight.tscn")
 var SC_wall_dirac := preload("res://WallDirac.tscn")
 var SC_wall_tilde := preload("res://WallTilde.tscn")
 var SC_wall_u := preload("res://WallU.tscn")
 var SC_wall_wide_u := preload("res://WallWideU.tscn")
+var SC_new_wall : PackedScene
 
 var SC_cursor := preload("res://Cursor.tscn")
 
@@ -36,10 +39,11 @@ func _ready() -> void:
 	_cursor = SC_cursor.instantiate()
 	add_child(_cursor)
 	
-	_preview_wall = SC_wall_straight.instantiate()
-	add_child(_preview_wall)
-	_preview_wall.set_to_preview_mode()
-	_preview_wall.wall_placeable_status.connect(_handle_wall_placeable)
+	_change_wall_type(GE.WallType.STRAIGHT)
+	#_preview_wall = SC_wall_straight.instantiate()
+	#add_child(_preview_wall)
+	#_preview_wall.set_to_preview_mode()
+	#_preview_wall.wall_placeable_status.connect(_handle_wall_placeable)
 	
 	_wall_container = get_node("WallContainer")
 	
@@ -67,13 +71,17 @@ func _process(_delta: float) -> void:
 	
 	if (rotate_preview_direction):
 		_preview_wall.rotation += rotate_preview_direction * ((2*PI) / _wall_rotation_possible_positions)
+	
+	# Handling input: wall type switch
+	if (Input.is_action_just_pressed("switch_wall_type")):
+		_change_wall_type(GE.WallType.TILDE)
 
 func _place_wall():
 	if ((not _can_place_wall) or _is_place_in_cooldown):
 		return
 	
 	# Create wall instance
-	var new_wall := SC_wall_straight.instantiate()
+	var new_wall := SC_new_wall.instantiate()
 	new_wall.position = _preview_wall.position
 	new_wall.rotation = _preview_wall.rotation
 	new_wall.get_node("RigidBody2D/Area2D/PreviewCollision").set_deferred("disabled", true)
@@ -111,3 +119,37 @@ func _handle_placing_cooldown(is_in_cooldown : bool):
 		_cursor.set_to_dead()
 	else:
 		_handle_wall_placeable(_can_place_wall) # If there's no cooldown, check if there's impossible placement
+
+func _change_wall_type(type : GE.WallType):
+	if (_preview_wall and type == _current_wall_type):
+		return # Don't recreate if it's the same wall type
+		
+	# Getting correct wall scene
+	match type:
+		GE.WallType.DIRAC:
+			SC_new_wall = SC_wall_dirac
+		GE.WallType.STRAIGHT:
+			SC_new_wall = SC_wall_straight
+		GE.WallType.TILDE:
+			SC_new_wall = SC_wall_tilde
+		GE.WallType.U:
+			SC_new_wall = SC_wall_u
+		GE.WallType.WIDE_U:
+			SC_new_wall = SC_wall_wide_u
+	
+	var preview_rotation := 0.0
+	
+	if (_preview_wall):
+		# Conserving preview rotation
+		preview_rotation = _preview_wall.rotation
+		
+		_preview_wall.queue_free()
+	
+	_current_wall_type = type
+	
+	# Creating new preview wall
+	_preview_wall = SC_new_wall.instantiate()
+	_preview_wall.rotation = preview_rotation
+	add_child(_preview_wall)
+	_preview_wall.set_to_preview_mode()
+	_preview_wall.wall_placeable_status.connect(_handle_wall_placeable)

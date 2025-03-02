@@ -9,6 +9,7 @@ var _nb_bodies_on_preview_shape : int = 0
 
 signal wall_placeable_status ( placeable : bool )
 
+
 func _ready() -> void:
 	_wall_sprite = get_node("Sprite2D")
 	_wall_collision = get_node("RigidBody2D")
