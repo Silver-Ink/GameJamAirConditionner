@@ -51,6 +51,7 @@ func _place_wall():
 	var new_wall := SC_wall_straight.instantiate()
 	new_wall.position = _preview_wall.position
 	new_wall.rotation = _preview_wall.rotation
+	new_wall.get_node("RigidBody2D/Area2D/PreviewCollisionShape2D").set_deferred("disabled", true)
 	_wall_container.add_child(new_wall)
 	new_wall.get_tree().create_timer(_wall_life_time).timeout.connect(new_wall.initiate_wall_destroy)
 	

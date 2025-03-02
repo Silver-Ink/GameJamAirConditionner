@@ -6,7 +6,6 @@ var _wall_sprite : Sprite2D
 var _wall_collision : RigidBody2D
 
 var _nb_bodies_on_preview_shape : int = 0
-var _is_wall_placeable : bool = true
 
 signal wall_placeable_status ( placeable : bool )
 
@@ -28,12 +27,16 @@ func set_to_preview_mode():
 	_wall_sprite.modulate.a = 0.3
 
 func _on_preview_shape_body_entered(body: Node2D) -> void:
-	_is_wall_placeable = false
+	if (body == get_node("../../WorldCollisionStaticBody")):
+		return # Ignore level border
+	
 	wall_placeable_status.emit(false)
 	_nb_bodies_on_preview_shape += 1
 
 func _on_preview_shape_body_exited(body: Node2D) -> void:
+	if (body == get_node("../../WorldCollisionStaticBody")):
+		return # Ignore level border
+		
 	_nb_bodies_on_preview_shape -= 1
 	if (_nb_bodies_on_preview_shape == 0):
-		_is_wall_placeable = true
 		wall_placeable_status.emit(true)

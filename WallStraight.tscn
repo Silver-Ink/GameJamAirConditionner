@@ -11,6 +11,7 @@ script = ExtResource("1_acu3m")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
+freeze = true
 
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
