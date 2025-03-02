@@ -1,10 +1,12 @@
 extends Node2D
 
 const SPAWN_INTERVAL = .5
+const MIN_NEXT_WAVE = .3
+const MAX_NEXT_WAVE = 1.4
 
 var lst_spawn_point : Array[Marker2D]
-
 var lst_living_item : Array[Item]
+var lst_living_item_pos_id : Array[int]
 
 var sc_item = preload("res://item.tscn")
 
@@ -20,13 +22,14 @@ func _process(delta: float) -> void:
 	pass
 	
 # Please don't input more than spawn point count !?
-func spawn_item_wave(count : int):
-	var lstId : Array[int]
+func spawn_item_wave(count : int, except := -1):
+	lst_living_item_pos_id.clear()
+	lst_living_item.clear()
 	for i in range(count):
 		var randId = randi() % lst_spawn_point.size()
-		while (lstId.find(randId) != -1):
+		while (lst_living_item_pos_id.find(randId) != -1 || randId == except):
 			randId = randi() % lst_spawn_point.size()
-		lstId.append(randId)
+		lst_living_item_pos_id.append(randId)
 		
 		get_tree().create_timer(SPAWN_INTERVAL * i).timeout.connect(_spawn_item.bind(randId))
 	
@@ -42,6 +45,15 @@ func _end_wave(caller):
 	for item in lst_living_item:
 		if (item != caller):
 			item.kill()
+	
+	var item_count = randi_range(1, 3)
+	var previous_item_id : int = lst_living_item.find(caller)
+	if (previous_item_id == -1):
+		printerr("L'item déclencheur n'est pas dans la liste")
+	var previous_item_pos_id = lst_living_item_pos_id[previous_item_id]
+	get_tree().create_timer(randf_range(MIN_NEXT_WAVE, MAX_NEXT_WAVE)). \
+	timeout.connect(spawn_item_wave.bind(item_count, previous_item_pos_id))
+	
 	
 	
 	
