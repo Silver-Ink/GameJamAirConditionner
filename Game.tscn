@@ -52,16 +52,105 @@ script = ExtResource("4_tt6b1")
 metadata/_edit_lock_ = true
 
 [node name="Marker2D" type="Marker2D" parent="ItemController"]
-position = Vector2(112, 71)
+position = Vector2(585, 90)
+
+[node name="Marker2D5" type="Marker2D" parent="ItemController"]
+position = Vector2(118, 65)
 
 [node name="Marker2D2" type="Marker2D" parent="ItemController"]
-position = Vector2(515, 78)
+position = Vector2(283, 26)
 
 [node name="Marker2D3" type="Marker2D" parent="ItemController"]
-position = Vector2(507, 271)
+position = Vector2(503, 318)
 
 [node name="Marker2D4" type="Marker2D" parent="ItemController"]
-position = Vector2(103, 282)
+position = Vector2(119, 251)
 
-[connection signal="reset_explosion_count" from="SurvivingPlayer" to="WallPlacer" method="_reset_explosion_count"]
+[node name="Marker2D6" type="Marker2D" parent="ItemController"]
+position = Vector2(40, 325)
+
+[node name="Marker2D7" type="Marker2D" parent="ItemController"]
+position = Vector2(514, 22)
+
+[node name="Marker2D8" type="Marker2D" parent="ItemController"]
+position = Vector2(295, 314)
+
+[node name="Marker2D9" type="Marker2D" parent="ItemController"]
+position = Vector2(607, 303)
+
+[node name="Marker2D10" type="Marker2D" parent="ItemController"]
+position = Vector2(528, 181)
+
+[node name="Marker2D11" type="Marker2D" parent="ItemController"]
+position = Vector2(214, 18)
+
+[node name="Marker2D12" type="Marker2D" parent="ItemController"]
+position = Vector2(65, 164)
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls"]
+
+[node name="Polygon2D" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(119, 109, 167, 78, 167, 121)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(119, 109, 167, 78, 167, 121)
+
+[node name="Polygon2D2" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(235, -27, 235, 66, 246, 66, 246, -25)
+
+[node name="Polygon2D3" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(351, 34, 338, 69, 348, 73, 362, 38, 376, 40, 378, 31, 363, 28)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(338, 69, 351, 34, 363, 28, 378, 31, 376, 40, 362, 38, 348, 73)
+
+[node name="Polygon2D4" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(444, 225, 506, 258, 499, 270, 477, 258, 458, 294, 445, 288, 464, 252, 436, 237)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(436, 237, 444, 225, 506, 258, 499, 270, 477, 258, 458, 294, 445, 288, 464, 252)
+
+[node name="Polygon2D5" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(641, 239, 620, 260, 602, 244, 596, 250, 620, 271, 647, 244)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(641, 239, 620, 260, 602, 244, 596, 250, 620, 271, 647, 244)
+
+[node name="Polygon2D6" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(129, 222, 123, 227, 146, 256, 152, 252)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(123, 227, 129, 222, 152, 252, 146, 256)
+
+[node name="Polygon2D7" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(95, 247, 116, 274, 110, 279, 89, 252)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(89, 252, 95, 247, 116, 274, 110, 279, 104, 272)
+
+[node name="Polygon2D8" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(285, 268, 244, 305, 252, 314, 291, 279, 313, 279, 313, 268)
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(244, 306, 285, 268, 313, 268, 313, 279, 291, 279, 252, 314)
+
+[node name="Polygon2D9" type="Polygon2D" parent="walls/StaticBody2D"]
+color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(556, 42, 524, 70, 524, 94, 532, 94, 532, 74, 562, 49)
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
+polygon = PackedVector2Array(524, 94, 532, 94, 532, 74, 562, 49, 556, 42, 524, 70)
+
 [connection signal="walls_placed_progression" from="WallPlacer" to="SurvivingPlayer" method="_on_walls_placed_progression"]

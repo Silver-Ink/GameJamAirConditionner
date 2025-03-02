@@ -46,7 +46,7 @@ func _end_wave(caller):
 		if (item != caller):
 			item.kill()
 	
-	var item_count = randi_range(1, 3)
+	var item_count = randi_range(2, 3)
 	var previous_item_id : int = lst_living_item.find(caller)
 	if (previous_item_id == -1):
 		printerr("L'item déclencheur n'est pas dans la liste")
