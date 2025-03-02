@@ -1,5 +1,5 @@
 extends Control
-var SC_game = preload("res://game.tscn")
+var SC_game = preload("res://Game.tscn")
 var SC_credits = preload("res://CREDITS/GodotCredits.tscn")
 
 func _on_exit_button_up() -> void:
