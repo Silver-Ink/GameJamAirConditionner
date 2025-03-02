@@ -13,3 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 		
+
+
+func _on_wall_placer_walls_placed_progression(count: int) -> void:
+	pass # Replace with function body.

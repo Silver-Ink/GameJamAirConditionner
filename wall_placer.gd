@@ -108,7 +108,9 @@ func _place_wall():
 	# Updating count
 	if (walls_placed_count < walls_progression_max):
 		walls_placed_count += 1
+		print(walls_placed_count)
 		walls_placed_progression.emit(walls_placed_count)
+
 
 func _handle_wall_placeable(is_placeable : bool):
 	_can_place_wall = is_placeable
@@ -176,5 +178,5 @@ func _switch_wall_type():
 	is_choice_1 = not is_choice_1
 
 
-func _reset_explosion_count() -> void:
+func reset_explosion_count() -> void:
 	walls_placed_count = 0

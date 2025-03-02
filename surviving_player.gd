@@ -15,6 +15,9 @@ signal reset_explosion_count
 func _ready() -> void:
 	explosion_area = get_node("ExplosionArea")
 	
+	
+	reset_explosion_count.connect($"../WallPlacer".reset_explosion_count)
+	
 
 func _process(delta: float) -> void:
 	
@@ -61,8 +64,11 @@ func _destroy_nearby_walls():
 	_explosion_ready = false
 	reset_explosion_count.emit()
 	
+	$"../GameBackground".wall_counter = 0
+	
 
 
 func _on_walls_placed_progression(count: int) -> void:
+	$"../GameBackground".wall_counter += 1
 	if (count == WallPlacer.walls_progression_max):
 		_explosion_ready = true
