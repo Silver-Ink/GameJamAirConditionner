@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0vjy050wrxjr"]
+[gd_scene load_steps=10 format=3 uid="uid://c0vjy050wrxjr"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_72g1l"]
 [ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
 [ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
 [ext_resource type="Script" path="res://item_controller.gd" id="4_tt6b1"]
+[ext_resource type="PackedScene" path="res://game_background.tscn" id="5_1bl4l"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfl1q"]
 normal = Vector2(1, 0)
@@ -153,5 +154,11 @@ polygon = PackedVector2Array(556, 42, 524, 70, 524, 94, 532, 94, 532, 74, 562, 4
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
 polygon = PackedVector2Array(524, 94, 532, 94, 532, 74, 562, 49, 556, 42, 524, 70)
+
+[node name="GameBackground" parent="." instance=ExtResource("5_1bl4l")]
+offset_left = 321.0
+offset_top = 349.0
+offset_right = 321.0
+offset_bottom = 349.0
 
 [connection signal="walls_placed_progression" from="WallPlacer" to="SurvivingPlayer" method="_on_walls_placed_progression"]
