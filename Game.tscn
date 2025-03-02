@@ -62,3 +62,6 @@ position = Vector2(507, 271)
 
 [node name="Marker2D4" type="Marker2D" parent="ItemController"]
 position = Vector2(103, 282)
+
+[connection signal="reset_explosion_count" from="SurvivingPlayer" to="WallPlacer" method="_reset_explosion_count"]
+[connection signal="walls_placed_progression" from="WallPlacer" to="SurvivingPlayer" method="_on_walls_placed_progression"]

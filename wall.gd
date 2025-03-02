@@ -34,15 +34,15 @@ func set_to_preview_mode():
 	_wall_sprite.set_z_index(3500)
 
 func _on_preview_shape_body_entered(body: Node2D) -> void:
-	if (body == get_node("../../WorldCollisionStaticBody")):
-		return # Ignore level border
+	if (body == get_node("../../WorldCollisionStaticBody") or body == get_node("../../SurvivingPlayer/").explosion_area):
+		return # Ignore level border and player collision area
 	
 	wall_placeable_status.emit(false)
 	_nb_bodies_on_preview_shape += 1
 
 func _on_preview_shape_body_exited(body: Node2D) -> void:
-	if (body == get_node("../../WorldCollisionStaticBody")):
-		return # Ignore level border
+	if (body == get_node("../../WorldCollisionStaticBody") or body == get_node("../../SurvivingPlayer/").explosion_area):
+		return # Ignore level border and player collision area
 		
 	_nb_bodies_on_preview_shape -= 1
 	if (_nb_bodies_on_preview_shape == 0):

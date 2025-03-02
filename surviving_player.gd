@@ -8,12 +8,20 @@ const DAMPING = .93
 var current_speed := 0.
 var rotation_target: float
 
+var explosion_area : Area2D
+var _explosion_ready : bool
+signal reset_explosion_count
+
 func _ready() -> void:
-	pass
+	explosion_area = get_node("ExplosionArea")
 	
 
 func _process(delta: float) -> void:
-
+	
+	# Input: handling explosion
+	if (Input.is_action_just_pressed("ui_accept") and _explosion_ready):
+		_destroy_nearby_walls()
+	
 	var directionX := Input.get_axis("ui_left", "ui_right")
 	var directionY := Input.get_axis("ui_up", "ui_down")
 	var direction_vect := Vector2(directionX, directionY).normalized()
@@ -42,4 +50,19 @@ func _process(delta: float) -> void:
 		velocity *= DAMPING
 		current_speed *= DAMPING
 		move_and_slide()
+
+func _destroy_nearby_walls():
+	var collide_with_explosion : Array[Node2D] = explosion_area.get_overlapping_bodies()
+	collide_with_explosion = collide_with_explosion.filter(func(node : Node2D) : return node is RigidBody2D)
+	
+	for wall in collide_with_explosion:
+		wall.get_parent().queue_free()
 		
+	_explosion_ready = false
+	reset_explosion_count.emit()
+	
+
+
+func _on_walls_placed_progression(count: int) -> void:
+	if (count == WallPlacer.walls_progression_max):
+		_explosion_ready = true

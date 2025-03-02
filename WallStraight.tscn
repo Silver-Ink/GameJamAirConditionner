@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://tudpnhmm8yxh"]
 
 [ext_resource type="Script" path="res://wall.gd" id="1_acu3m"]
-[ext_resource type="Texture2D" uid="uid://dylktpfepl25f" path="res://assets/walls/straight.png" id="1_jkp1i"]
+[ext_resource type="Texture2D" uid="uid://bwejtd0qkk6qv" path="res://assets/walls/straight.png" id="1_jkp1i"]
 
 [node name="WallStraight" type="Node2D"]
 script = ExtResource("1_acu3m")

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch5s2btnrj7ne"]
+[gd_scene load_steps=5 format=3 uid="uid://ch5s2btnrj7ne"]
 
 [ext_resource type="Script" path="res://surviving_player.gd" id="1_ja7mv"]
-[ext_resource type="Texture2D" uid="uid://bwsu6kpr4cf7x" path="res://assets/circleShape.png" id="2_o72nr"]
+[ext_resource type="Texture2D" uid="uid://v7vlprk5q2h7" path="res://assets/circleShape.png" id="2_o72nr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mymc"]
 radius = 9.05539
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rqspj"]
+radius = 28.1603
 
 [node name="SurvivingPlayer" type="CharacterBody2D"]
 motion_mode = 1
@@ -17,3 +20,8 @@ shape = SubResource("CircleShape2D_1mymc")
 [node name="CircleShape" type="Sprite2D" parent="."]
 scale = Vector2(0.5625, 0.5625)
 texture = ExtResource("2_o72nr")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_rqspj")

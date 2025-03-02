@@ -1,4 +1,4 @@
-extends Node2D
+class_name WallPlacer extends Node2D
 
 const _wall_rotation_possible_positions := 12
 const _wall_life_time := 10
@@ -22,6 +22,10 @@ var is_choice_1 := true
 var wall_type_choice_1 := GE.WallType.STRAIGHT
 var wall_type_choice_2 := GE.WallType.TILDE
 var _current_wall_type := GE.WallType.STRAIGHT
+
+var walls_placed_count := 0
+signal walls_placed_progression ( count : int )
+const walls_progression_max := 5
 
 var SC_wall_straight := preload("res://WallStraight.tscn")
 var SC_wall_dirac := preload("res://WallDirac.tscn")
@@ -93,6 +97,11 @@ func _place_wall():
 	# Initiate cooldown on wall place
 	_handle_placing_cooldown(true)
 	get_tree().create_timer(_wall_place_cooldown).timeout.connect(_handle_placing_cooldown.bind(false))
+	
+	# Updating count
+	if (walls_placed_count < walls_progression_max):
+		walls_placed_count += 1
+		walls_placed_progression.emit(walls_placed_count)
 
 func _handle_wall_placeable(is_placeable : bool):
 	_can_place_wall = is_placeable
@@ -158,3 +167,7 @@ func _switch_wall_type():
 	else:
 		_change_wall_type(wall_type_choice_1)
 	is_choice_1 = not is_choice_1
+
+
+func _reset_explosion_count() -> void:
+	walls_placed_count = 0
