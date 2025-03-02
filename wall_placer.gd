@@ -19,9 +19,9 @@ var _can_place_wall : bool = true
 var _is_place_in_cooldown : bool = false
 
 var is_choice_1 := true
-var wall_type_choice_1 := GE.WallType.STRAIGHT
-var wall_type_choice_2 := GE.WallType.TILDE
-var _current_wall_type := GE.WallType.STRAIGHT
+var wall_type_choice_1 : GE.WallType
+var wall_type_choice_2 : GE.WallType
+var _current_wall_type : GE.WallType
 
 var walls_placed_count := 0
 signal walls_placed_progression ( count : int )
@@ -37,6 +37,13 @@ var SC_new_wall : PackedScene
 var SC_cursor := preload("res://Cursor.tscn")
 
 func _ready() -> void:
+	# Set random walls
+	var rand := randi() % (GE.WallType.size()-1)
+	wall_type_choice_1 = rand
+	wall_type_choice_2 = rand + 1
+	_current_wall_type = wall_type_choice_1
+	
+	
 	# Hide real cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
