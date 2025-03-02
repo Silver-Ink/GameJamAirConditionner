@@ -100,6 +100,7 @@ polygon = PackedVector2Array(119, 109, 167, 78, 167, 121)
 
 [node name="Polygon2D2" type="Polygon2D" parent="walls/StaticBody2D"]
 color = Color(0.374139, 0.374139, 0.374139, 1)
+polygon = PackedVector2Array(235, 66, 246, 66, 246, -3, 235, -4)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="walls/StaticBody2D"]
 polygon = PackedVector2Array(235, -27, 235, 66, 246, 66, 246, -25)
