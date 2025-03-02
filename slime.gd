@@ -28,3 +28,7 @@ func apply_next_frame():
 	textureId1 = (textureId1 + 1) % lstTextureSlime1.size()
 	textureId2 = (textureId2 + 1) % lstTextureSlime2.size()
 	textureId3 = (textureId3 + 1) % lstTextureSlime3.size()
+	
+func reset_soft_body():
+	pass
+	

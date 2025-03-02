@@ -10,6 +10,7 @@ const DAMPING = .93
 var current_speed := 0.
 var front_join_dist : float
 var lst_particle: Array[RigidBody2D]
+var lst_particle_base_pos : PackedVector2Array
 var rotation_target: float
 
 @onready var soft_body_detector: Area2D = $SoftBodyDetector
@@ -23,7 +24,6 @@ func _ready() -> void:
 func disable_softbody_detector():
 	soft_body_detector.queue_free()
 	soft_body_detector = null
-	print(lst_particle.size())
 	
 
 func _physics_process(delta: float) -> void:
@@ -69,3 +69,14 @@ func _physics_process(delta: float) -> void:
 func _on_soft_body_detector_body_entered(body: Node2D) -> void:
 	if (body is RigidBody2D):
 		lst_particle.append(body)
+		lst_particle_base_pos.append(body.position)
+
+func copy_particle_base_pos(slime : Slime):
+	var softBody : SoftBody2D
+	var child_c = softBody.get_child_count()
+	var particleId = 0
+	for i in range(child_c):
+		var particle = soft_body.get_child(i)
+		if (particle is RigidBody2D):
+			particleId += 1
+			particle.position = lst_particle_base_pos[particleId]
