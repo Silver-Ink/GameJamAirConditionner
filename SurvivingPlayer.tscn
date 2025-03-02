@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ch5s2btnrj7ne"]
 
 [ext_resource type="Script" path="res://surviving_player.gd" id="1_ja7mv"]
-[ext_resource type="Texture2D" uid="uid://bwsu6kpr4cf7x" path="res://assets/circleShape.png" id="2_o72nr"]
+[ext_resource type="Texture2D" uid="uid://v7vlprk5q2h7" path="res://assets/circleShape.png" id="2_o72nr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mymc"]
 radius = 9.05539

@@ -30,3 +30,7 @@ func _time() -> String:
 	var delta = now - t0
 	delta = int(floor(delta / 1000))
 	return "%02d:%02d" % [int(floor(delta / 60)), delta % 60]
+	
+func incr_surviving_player_count(item: Item):
+	print("t")
+	ball_points += 1

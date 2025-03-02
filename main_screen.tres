@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b3qn60h1iw1g"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bg7dtxigr1u3c"]
 
-[ext_resource type="FontFile" uid="uid://csrffm6wv1hp3" path="res://assets/Font-GrapeSoda.ttf" id="1_oitns"]
+[ext_resource type="FontFile" uid="uid://iqsfdm3elgjm" path="res://assets/Font-GrapeSoda.ttf" id="1_oitns"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6y5y"]
 bg_color = Color(1, 1, 1, 0)

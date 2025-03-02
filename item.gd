@@ -12,6 +12,7 @@ enum ItemType {
 }
 
 signal pick_up(item : Item)
+signal no_pick_up()
 
 @export var item_type: ItemType
 var anim: ItemSprite
@@ -42,6 +43,9 @@ func _ready() -> void:
 	effects_player = get_children().filter(func(child): return child is SoundEffects).front()
 	before = get_children().filter(func(child): return child is Before).front()
 	init()
+	
+	var game_bg = get_node("../../GameBackground")
+	pick_up.connect(game_bg.incr_surviving_player_count)
 
 func init():
 	var type = randi() % ItemType.COUNT
