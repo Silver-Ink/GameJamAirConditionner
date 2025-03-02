@@ -1,0 +1,1 @@
+class_name ItemSprite extends AnimatedSprite2D

@@ -1,4 +1,4 @@
-extends Node2D
+class_name Slime extends Node2D
 
 @onready var soft_body_2d: SoftBody2D = $SoftBody2D
 @onready var texture_timer: Timer = $TextureTimer

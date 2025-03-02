@@ -1,0 +1,1 @@
+class_name Before extends AnimatedSprite2D

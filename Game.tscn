@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0vjy050wrxjr"]
+[gd_scene load_steps=8 format=3 uid="uid://c0vjy050wrxjr"]
 
 [ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
 [ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
+[ext_resource type="PackedScene" path="res://slime.tscn" id="3_raclx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfl1q"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tqd7w"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sv7m4"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n0air"]
 
 [node name="Game" type="Node2D"]
 
@@ -14,3 +26,23 @@ position = Vector2(-318, -256)
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 zoom = Vector2(2, 2)
+
+[node name="WorldCollisionStaticBody" type="StaticBody2D" parent="."]
+
+[node name="LeftWallCollision" type="CollisionShape2D" parent="WorldCollisionStaticBody"]
+position = Vector2(0, 180)
+shape = SubResource("WorldBoundaryShape2D_sfl1q")
+
+[node name="RightWallCollision" type="CollisionShape2D" parent="WorldCollisionStaticBody"]
+position = Vector2(640, 180)
+shape = SubResource("WorldBoundaryShape2D_tqd7w")
+
+[node name="UpWallCollision" type="CollisionShape2D" parent="WorldCollisionStaticBody"]
+position = Vector2(320, 0)
+shape = SubResource("WorldBoundaryShape2D_sv7m4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCollisionStaticBody"]
+position = Vector2(320, 360)
+shape = SubResource("WorldBoundaryShape2D_n0air")
+
+[node name="Slime" parent="." instance=ExtResource("3_raclx")]
