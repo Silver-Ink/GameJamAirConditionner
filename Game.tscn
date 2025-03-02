@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
 [ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
 [ext_resource type="Script" path="res://item_controller.gd" id="4_tt6b1"]
-[ext_resource type="PackedScene" path="res://game_background.tscn" id="5_1bl4l"]
+[ext_resource type="PackedScene" uid="uid://dy32kwsvbno7w" path="res://game_background.tscn" id="5_1bl4l"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfl1q"]
 normal = Vector2(1, 0)
@@ -161,4 +161,5 @@ offset_top = 349.0
 offset_right = 321.0
 offset_bottom = 349.0
 
+[connection signal="walls_placed_progression" from="WallPlacer" to="." method="_on_wall_placer_walls_placed_progression"]
 [connection signal="walls_placed_progression" from="WallPlacer" to="SurvivingPlayer" method="_on_walls_placed_progression"]
