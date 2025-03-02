@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://confysmygsyot"]
+
+[ext_resource type="Script" path="res://wall.gd" id="1_hhgqb"]
+[ext_resource type="Texture2D" uid="uid://c01aa3itb71g4" path="res://assets/walls/tilde.png" id="2_8h77o"]
+
+[node name="WallTilde" type="Node2D"]
+script = ExtResource("1_hhgqb")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+
+[node name="PreviewCollision" type="CollisionPolygon2D" parent="RigidBody2D/Area2D"]
+polygon = PackedVector2Array(-64, 2, -64, -4, -60, -9, -53, -13, -41, -16, -21, -16, -12, -14, -5, -11, 1, -6, 3, -3, 5, 1, 8, 4, 15, 7, 24, 9, 31, 10, 38, 9, 50, 6, 55, 4, 57, 1, 58, -1, 60, -4, 63, -4, 64, -3, 64, 4, 62, 7, 60, 9, 53, 13, 46, 15, 41, 16, 21, 16, 9, 13, 2, 9, -3, 3, -5, -1, -8, -4, -15, -7, -24, -9, -31, -10, -38, -9, -47, -7, -54, -4, -55, -3, -57, -1, -60, 4, -63, 4, -64, 3)
+
+[node name="RegularCollision" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-64, 2, -64, -4, -60, -9, -53, -13, -41, -16, -21, -16, -12, -14, -5, -11, 1, -6, 3, -3, 5, 1, 8, 4, 15, 7, 24, 9, 31, 10, 38, 9, 50, 6, 55, 4, 57, 1, 58, -1, 60, -4, 63, -4, 64, -3, 64, 4, 62, 7, 60, 9, 53, 13, 46, 15, 41, 16, 21, 16, 9, 13, 2, 9, -3, 3, -5, -1, -8, -4, -15, -7, -24, -9, -31, -10, -38, -9, -47, -7, -54, -4, -55, -3, -57, -1, -60, 4, -63, 4, -64, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8h77o")

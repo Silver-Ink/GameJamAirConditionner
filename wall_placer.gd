@@ -18,6 +18,11 @@ var _can_place_wall : bool = true
 var _is_place_in_cooldown : bool = false
 
 var SC_wall_straight := preload("res://WallStraight.tscn")
+var SC_wall_dirac := preload("res://WallDirac.tscn")
+var SC_wall_tilde := preload("res://WallTilde.tscn")
+var SC_wall_u := preload("res://WallU.tscn")
+var SC_wall_wide_u := preload("res://WallWideU.tscn")
+
 var SC_cursor := preload("res://Cursor.tscn")
 
 var effects_player: AudioStreamPlayer
@@ -71,7 +76,7 @@ func _place_wall():
 	var new_wall := SC_wall_straight.instantiate()
 	new_wall.position = _preview_wall.position
 	new_wall.rotation = _preview_wall.rotation
-	new_wall.get_node("RigidBody2D/Area2D/PreviewCollisionShape2D").set_deferred("disabled", true)
+	new_wall.get_node("RigidBody2D/Area2D/PreviewCollision").set_deferred("disabled", true)
 	_wall_container.add_child(new_wall)
 	
 	effects_player.stream = load("res://assets/sounds/walls/%s.mp3" % soundbank[randi() % soundbank.size()])

@@ -21,7 +21,7 @@ func initiate_wall_destroy():
 	tween.tween_property(_wall_sprite, "modulate", Color(_wall_sprite.modulate, 0), (_wall_fadeout_time / 2.0))
 
 func set_to_preview_mode():
-	var collision : CollisionShape2D = _wall_collision.get_node("CollisionShape2D")
+	var collision : CollisionPolygon2D = _wall_collision.get_node("RegularCollision")
 	collision.set_deferred("disabled", true)
 	
 	_wall_sprite.modulate.a = 0.3

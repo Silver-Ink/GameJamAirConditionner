@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc56sevwoyvwf"]
+
+[ext_resource type="Script" path="res://wall.gd" id="1_dpotk"]
+[ext_resource type="Texture2D" uid="uid://bsce6jhfb1mf4" path="res://assets/walls/dirac.png" id="2_22k1h"]
+
+[node name="WallBent" type="Node2D"]
+script = ExtResource("1_dpotk")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+
+[node name="PreviewCollision" type="CollisionPolygon2D" parent="RigidBody2D/Area2D"]
+polygon = PackedVector2Array(-62, -32, 2, -32, 4, -30, 4, 25, 62, 25, 64, 27, 64, 30, 62, 32, -2, 32, -4, 30, -4, -25, -62, -25, -64, -27, -64, -30)
+
+[node name="RegularCollision" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-62, -32, 2, -32, 4, -30, 4, 25, 62, 25, 64, 27, 64, 30, 62, 32, -2, 32, -4, 30, -4, -25, -62, -25, -64, -27, -64, -30)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_22k1h")
