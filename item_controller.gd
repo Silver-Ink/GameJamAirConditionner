@@ -1,5 +1,7 @@
 extends Node2D
 
+const SPAWN_INTERVAL = .5
+
 var lst_spawn_point : Array[Marker2D]
 
 var sc_item = preload("res://item.tscn")
@@ -15,6 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+# Please don't input more than spawn point count !?
 func spawn_item_wave(count : int):
 	var lstId : Array[int]
 	for i in range(count):
@@ -23,11 +26,12 @@ func spawn_item_wave(count : int):
 			randId = randi() % lst_spawn_point.size()
 		lstId.append(randId)
 		
-		var item : Item = sc_item.instantiate()
-		item.global_position = lst_spawn_point[randId].global_position
-		add_child(item)
+		get_tree().create_timer(SPAWN_INTERVAL * i).timeout.connect(_spawn_item.bind(randId))
 	
-		
+func _spawn_item(idPos : int):
+	var item : Item = sc_item.instantiate()
+	item.global_position = lst_spawn_point[idPos].global_position
+	add_child(item)
 	
 	
 	

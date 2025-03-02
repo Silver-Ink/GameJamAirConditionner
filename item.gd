@@ -88,6 +88,7 @@ func destroy():
 	effects_player.play()
 	anim.visible = false
 	before.play("destroy")
+	before.animation_finished.connect(queue_free)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
