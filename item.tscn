@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://5be7uvkii4qi"]
+[gd_scene load_steps=61 format=3 uid="uid://5be7uvkii4qi"]
 
 [ext_resource type="Script" path="res://item.gd" id="1_oikgc"]
 [ext_resource type="Texture2D" uid="uid://bwmcjn1xs6cef" path="res://assets/items/apple.png" id="2_1c3w8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bhiwe5w6ukiyo" path="res://assets/items/square guy.png" id="7_slw7p"]
 [ext_resource type="Texture2D" uid="uid://cg77qq8btpls3" path="res://assets/items/transh.png" id="8_3dp4x"]
 [ext_resource type="Script" path="res://item_sprite.gd" id="11_p6nyw"]
+[ext_resource type="Script" path="res://audio_stream_player.gd" id="13_nibbj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gy4uy"]
 atlas = ExtResource("2_54io7")
@@ -41,25 +42,13 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("2_54io7")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tvl71"]
-atlas = ExtResource("2_54io7")
-region = Rect2(224, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4iv1"]
+atlas = ExtResource("3_0cfss")
+region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4akb1"]
-atlas = ExtResource("2_54io7")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eaoni"]
-atlas = ExtResource("2_54io7")
-region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yk4g1"]
-atlas = ExtResource("2_54io7")
-region = Rect2(320, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qbfty"]
-atlas = ExtResource("2_54io7")
-region = Rect2(352, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xvt0"]
+atlas = ExtResource("3_0cfss")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lhtib"]
 resource_local_to_scene = true
@@ -87,19 +76,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_h0s3a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tvl71")
+"texture": SubResource("AtlasTexture_q4iv1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4akb1")
+"texture": SubResource("AtlasTexture_8xvt0")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eaoni")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yk4g1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qbfty")
+"duration": 2.0,
+"texture": null
 }],
 "loop": false,
 "name": &"default",
@@ -133,14 +116,6 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7yu6w"]
 atlas = ExtResource("3_0cfss")
 region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4iv1"]
-atlas = ExtResource("3_0cfss")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xvt0"]
-atlas = ExtResource("3_0cfss")
-region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op77i"]
 atlas = ExtResource("3_0cfss")
@@ -422,8 +397,7 @@ script = ExtResource("3_eccyi")
 [node name="ItemSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_efvgg")
-animation = &"square guy"
-frame_progress = 0.441846
+animation = &"destroy"
 script = ExtResource("11_p6nyw")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -431,6 +405,11 @@ script = ExtResource("11_p6nyw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2ho4w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("13_nibbj")
 
 [connection signal="animation_finished" from="Before" to="." method="_on_appear_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
