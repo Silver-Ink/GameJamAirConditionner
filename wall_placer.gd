@@ -12,11 +12,15 @@ const soundbank = [
 var _cursor : Cursor
 var _preview_wall : Wall
 var _wall_container : Node2D
+var _effects_player: AudioStreamPlayer
 var _level_camera : Camera2D
 
 var _can_place_wall : bool = true
 var _is_place_in_cooldown : bool = false
 
+var is_choice_1 := true
+var wall_type_choice_1 := GE.WallType.STRAIGHT
+var wall_type_choice_2 := GE.WallType.TILDE
 var _current_wall_type := GE.WallType.STRAIGHT
 
 var SC_wall_straight := preload("res://WallStraight.tscn")
@@ -28,24 +32,18 @@ var SC_new_wall : PackedScene
 
 var SC_cursor := preload("res://Cursor.tscn")
 
-var effects_player: AudioStreamPlayer
-
 func _ready() -> void:
-	effects_player = get_node("EffectsPlayer")
-	
 	# Hide real cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	_cursor = SC_cursor.instantiate()
 	add_child(_cursor)
 	
-	_change_wall_type(GE.WallType.STRAIGHT)
-	#_preview_wall = SC_wall_straight.instantiate()
-	#add_child(_preview_wall)
-	#_preview_wall.set_to_preview_mode()
-	#_preview_wall.wall_placeable_status.connect(_handle_wall_placeable)
-	
 	_wall_container = get_node("WallContainer")
+	_effects_player = get_node("EffectsPlayer")
+	
+	# Generating wall preview
+	_change_wall_type(wall_type_choice_1)
 	
 	_level_camera = get_node("../Camera2D")
 	assert(_level_camera, "Error: level camera not found")
@@ -74,7 +72,7 @@ func _process(_delta: float) -> void:
 	
 	# Handling input: wall type switch
 	if (Input.is_action_just_pressed("switch_wall_type")):
-		_change_wall_type(GE.WallType.TILDE)
+		_switch_wall_type()
 
 func _place_wall():
 	if ((not _can_place_wall) or _is_place_in_cooldown):
@@ -87,8 +85,8 @@ func _place_wall():
 	new_wall.get_node("RigidBody2D/Area2D/PreviewCollision").set_deferred("disabled", true)
 	_wall_container.add_child(new_wall)
 	
-	effects_player.stream = load("res://assets/sounds/walls/%s.mp3" % soundbank[randi() % soundbank.size()])
-	effects_player.play()
+	_effects_player.stream = load("res://assets/sounds/walls/%s.mp3" % soundbank[randi() % soundbank.size()])
+	_effects_player.play()
 	
 	new_wall.get_tree().create_timer(_wall_life_time).timeout.connect(new_wall.initiate_wall_destroy)
 	
@@ -153,3 +151,10 @@ func _change_wall_type(type : GE.WallType):
 	add_child(_preview_wall)
 	_preview_wall.set_to_preview_mode()
 	_preview_wall.wall_placeable_status.connect(_handle_wall_placeable)
+
+func _switch_wall_type():
+	if (is_choice_1):
+		_change_wall_type(wall_type_choice_2)
+	else:
+		_change_wall_type(wall_type_choice_1)
+	is_choice_1 = not is_choice_1
