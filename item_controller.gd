@@ -8,22 +8,24 @@ var sc_item = preload("res://item.tscn")
 func _ready() -> void:
 	for i in range(get_child_count()):
 		lst_spawn_point.append(get_child(i))
-
+		
+	spawn_item_wave(3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-func spawn_item_wave():
+func spawn_item_wave(count : int):
 	var lstId : Array[int]
-	for i in range(3):
-		var randId = randi_range(0, lst_spawn_point.size())
+	for i in range(count):
+		var randId = randi() % lst_spawn_point.size()
 		while (lstId.find(randId) != -1):
-			randId = randi_range(0, lst_spawn_point.size())
+			randId = randi() % lst_spawn_point.size()
 		lstId.append(randId)
 		
 		var item : Item = sc_item.instantiate()
-		item.init()
+		item.global_position = lst_spawn_point[randId].global_position
+		add_child(item)
 	
 		
 	

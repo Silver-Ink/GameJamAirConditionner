@@ -12,6 +12,11 @@ signal wall_placeable_status ( placeable : bool )
 func _ready() -> void:
 	_wall_sprite = get_node("Sprite2D")
 	_wall_collision = get_node("RigidBody2D")
+	
+	$RigidBody2D/Area2D.body_entered.connect(_on_preview_shape_body_entered)
+	$RigidBody2D/Area2D.body_exited.connect(_on_preview_shape_body_exited)
+	$RigidBody2D/Area2D.area_entered.connect(_on_preview_shape_body_entered)
+	$RigidBody2D/Area2D.area_exited.connect(_on_preview_shape_body_exited)
 
 func initiate_wall_destroy():
 	var tween := get_tree().create_tween()
