@@ -4,6 +4,8 @@ const SPAWN_INTERVAL = .5
 
 var lst_spawn_point : Array[Marker2D]
 
+var lst_living_item : Array[Item]
+
 var sc_item = preload("res://item.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +34,14 @@ func _spawn_item(idPos : int):
 	var item : Item = sc_item.instantiate()
 	item.global_position = lst_spawn_point[idPos].global_position
 	add_child(item)
+	item.pick_up.connect(_end_wave)
+	lst_living_item.append(item)
+	
+	
+func _end_wave(caller):
+	for item in lst_living_item:
+		if (item != caller):
+			item.kill()
 	
 	
 	

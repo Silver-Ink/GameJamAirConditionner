@@ -11,6 +11,8 @@ enum ItemType {
 	COUNT = 7
 }
 
+signal pick_up(item : Item)
+
 @export var item_type: ItemType
 var anim: ItemSprite
 var appearing: bool = false
@@ -79,16 +81,25 @@ func item_name() -> String:
 
 
 func destroy():
-	destroying = true
+	pick_up.emit(self)
 	var possible_sounds: Array = item_sounds[item_type]
 	var chosen = possible_sounds[randi() % possible_sounds.size()]
 	if not (chosen == "sparkle" or chosen == "chime-sparkles"):
 		effects_player.volume_db += 1
 	effects_player.stream = load("res://assets/sounds/items/%s.mp3" % chosen)
 	effects_player.play()
-	anim.visible = false
+	destroying = true
 	before.play("destroy")
+	_disappear()
+	
+func kill():
+	before.play("pof")
+	_disappear()
+	
+func _disappear():
+	anim.visible = false
 	before.animation_finished.connect(queue_free)
+	$ItemSprite/Area2D.queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
