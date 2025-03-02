@@ -1,16 +1,16 @@
 [gd_scene load_steps=64 format=3 uid="uid://5be7uvkii4qi"]
 
 [ext_resource type="Script" path="res://item.gd" id="1_oikgc"]
-[ext_resource type="Texture2D" uid="uid://bwmcjn1xs6cef" path="res://assets/items/apple.png" id="2_1c3w8"]
-[ext_resource type="Texture2D" uid="uid://ckqbvxlt8afsx" path="res://assets/items/appear.png" id="2_54io7"]
-[ext_resource type="Texture2D" uid="uid://6pwvm1y6ko56" path="res://assets/items/explode.png" id="3_0cfss"]
+[ext_resource type="Texture2D" uid="uid://2ovabgxnw7g4" path="res://assets/items/apple.png" id="2_1c3w8"]
+[ext_resource type="Texture2D" uid="uid://buco1tvc58cbo" path="res://assets/items/appear.png" id="2_54io7"]
+[ext_resource type="Texture2D" uid="uid://drkv200loxxgq" path="res://assets/items/explode.png" id="3_0cfss"]
 [ext_resource type="Script" path="res://before.gd" id="3_eccyi"]
-[ext_resource type="Texture2D" uid="uid://ijvw1uc8f10y" path="res://assets/items/fish.png" id="3_gyfqg"]
-[ext_resource type="Texture2D" uid="uid://8lktjgm24mv0" path="res://assets/items/heart.png" id="4_8sgrl"]
-[ext_resource type="Texture2D" uid="uid://dtoa4eemfviln" path="res://assets/items/slimte.png" id="5_mblsj"]
-[ext_resource type="Texture2D" uid="uid://d2fetsweew0d6" path="res://assets/items/sonic.png" id="6_j7rsc"]
-[ext_resource type="Texture2D" uid="uid://bhiwe5w6ukiyo" path="res://assets/items/square guy.png" id="7_slw7p"]
-[ext_resource type="Texture2D" uid="uid://cg77qq8btpls3" path="res://assets/items/transh.png" id="8_3dp4x"]
+[ext_resource type="Texture2D" uid="uid://dtxx5ghj5e3pb" path="res://assets/items/fish.png" id="3_gyfqg"]
+[ext_resource type="Texture2D" uid="uid://bl13m8qxm1p4i" path="res://assets/items/heart.png" id="4_8sgrl"]
+[ext_resource type="Texture2D" uid="uid://che4p3kmxv2fd" path="res://assets/items/slimte.png" id="5_mblsj"]
+[ext_resource type="Texture2D" uid="uid://bf7kb7i5u02wf" path="res://assets/items/sonic.png" id="6_j7rsc"]
+[ext_resource type="Texture2D" uid="uid://dxebomqqs12oi" path="res://assets/items/square guy.png" id="7_slw7p"]
+[ext_resource type="Texture2D" uid="uid://bcc40p2trgl63" path="res://assets/items/transh.png" id="8_3dp4x"]
 [ext_resource type="Script" path="res://item_sprite.gd" id="11_p6nyw"]
 [ext_resource type="Script" path="res://audio_stream_player.gd" id="13_nibbj"]
 [ext_resource type="Script" path="res://sound_effects.gd" id="14_1qwn5"]
@@ -113,9 +113,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8xvt0")
-}, {
-"duration": 2.0,
-"texture": null
 }],
 "loop": false,
 "name": &"default",
@@ -398,7 +395,6 @@ size = Vector2(33, 33)
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_oikgc")
-type = 2
 
 [node name="Before" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lhtib")

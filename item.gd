@@ -1,81 +1,86 @@
-extends Node2D
+class_name Item extends Node2D
 
-enum Type {
-	APPLE,
-	FISH,
-	HEART,
-	BLOB,
-	SONIC,
-	SQUARE,
-	TRASH
+enum ItemType {
+	APPLE = 0,
+	FISH = 1,
+	HEART = 2,
+	BLOB = 3,
+	SONIC = 4,
+	SQUARE = 5,
+	TRASH = 6,
+	COUNT = 7
 }
 
-@export var type: Type
+@export var item_type: ItemType
 var anim: ItemSprite
 var appearing: bool = false
 var destroying: bool = false
-var item_scale := 0.0
+var item_scale := 0.001
 var sam: SAM
 var effects_player: SoundEffects
 var before: Before
 
 const item_sounds := {
-	Type.APPLE: ["bo-womp", "cartoon-boing", "crunchy-bite"],
-	Type.FISH: ["fish", "uiou", "jump", "cartoon_bite_sound_effect"],
-	Type.HEART: ["heart-beat", "sparkles", "chime-sparkles"],
-	Type.BLOB: ["dégueu", "dégueu2", "crunchy-bite", "dead", "bo-womp"],
-	Type.SONIC: ["sonic-spring", "jump", "bongo-feet", "uiou"],
-	Type.SQUARE: ["wopi", "dead", "cartoon_sound_effect"]
+	ItemType.APPLE: ["bo-womp", "cartoon-boing", "crunchy-bite"],
+	ItemType.FISH: ["fish", "uiou", "jump", "cartoon_bite_sound_effect"],
+	ItemType.HEART: ["heart-beat", "sparkles", "chime-sparkles"],
+	ItemType.BLOB: ["dégueu", "dégueu2", "crunchy-bite", "dead", "bo-womp"],
+	ItemType.SONIC: ["sonic-spring", "jump", "bongo-feet", "uiou"],
+	ItemType.SQUARE: ["wopi", "dead", "cartoon_sound_effect"]
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_children().filter(func(child): return child is Before).front().play("default")
 	anim = get_children().filter(func(child): return child is ItemSprite).front()
-	anim.play(item_name())
 	anim.scale = Vector2(item_scale, item_scale)
 	sam = get_children().filter(func(child): return child is SAM).front()
 	sam.stream = load("res://assets/sounds/items/%s.wav" % item_name())
 	effects_player = get_children().filter(func(child): return child is SoundEffects).front()
 	before = get_children().filter(func(child): return child is Before).front()
+	init()
 
+func init():
+	var type = randi() % ItemType.COUNT
+	item_type = type
+	anim.play(item_name())
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if appearing:
 		if item_scale < 1:
 			anim.scale = Vector2(item_scale, item_scale)
-			item_scale += 0.15
+			item_scale += delta * 4.
 		else:
 			appearing = false
 			#sam.play()
-			destroy()
 
 
 func item_name() -> String:
-	match type:
-		Type.APPLE:
+	match item_type:
+		ItemType.APPLE:
 			return "apple"
-		Type.FISH:
+		ItemType.FISH:
 			return "fish"
-		Type.HEART:
+		ItemType.HEART:
 			return "heart"
-		Type.BLOB:
+		ItemType.BLOB:
 			return "slimte"
-		Type.SONIC:
+		ItemType.SONIC:
 			return "sonic"
-		Type.SQUARE:
+		ItemType.SQUARE:
 			return "square guy"
-		Type.TRASH:
+		ItemType.TRASH:
 			return "transh"
 		_:
-			push_error("Unknown item type")
+			push_error("Unknown item ItemType")
 			return ""
 
 
 func destroy():
 	destroying = true
-	var possible_sounds: Array = item_sounds[type]
+	var possible_sounds: Array = item_sounds[item_type]
 	var chosen = possible_sounds[randi() % possible_sounds.size()]
 	if not (chosen == "sparkle" or chosen == "chime-sparkles"):
 		effects_player.volume_db += 1
@@ -86,7 +91,7 @@ func destroy():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Slime:
+	if body is SurvivingPlayer:
 		destroy()
 
 

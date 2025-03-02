@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name SurvivingPlayer extends CharacterBody2D
 
 
 const MAX_SPEED = 300.0

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0vjy050wrxjr"]
+[gd_scene load_steps=10 format=3 uid="uid://c0vjy050wrxjr"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_72g1l"]
 [ext_resource type="PackedScene" uid="uid://ch5s2btnrj7ne" path="res://SurvivingPlayer.tscn" id="1_nsf7f"]
 [ext_resource type="PackedScene" uid="uid://bjr0wirbic3de" path="res://WallPlacer.tscn" id="2_nw2we"]
+[ext_resource type="Script" path="res://item_controller.gd" id="4_tt6b1"]
+[ext_resource type="PackedScene" uid="uid://5be7uvkii4qi" path="res://item.tscn" id="5_o70eo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfl1q"]
 normal = Vector2(1, 0)
@@ -45,3 +47,39 @@ shape = SubResource("WorldBoundaryShape2D_sv7m4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCollisionStaticBody"]
 position = Vector2(320, 360)
 shape = SubResource("WorldBoundaryShape2D_n0air")
+
+[node name="ItemController" type="Node2D" parent="."]
+script = ExtResource("4_tt6b1")
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="ItemController"]
+position = Vector2(112, 71)
+
+[node name="Marker2D2" type="Marker2D" parent="ItemController"]
+position = Vector2(515, 78)
+
+[node name="Marker2D3" type="Marker2D" parent="ItemController"]
+position = Vector2(507, 271)
+
+[node name="Marker2D4" type="Marker2D" parent="ItemController"]
+position = Vector2(103, 282)
+
+[node name="Item" parent="." instance=ExtResource("5_o70eo")]
+position = Vector2(204, 193)
+item_type = 1
+
+[node name="Item2" parent="." instance=ExtResource("5_o70eo")]
+position = Vector2(298, 215)
+item_type = 1
+
+[node name="Item3" parent="." instance=ExtResource("5_o70eo")]
+position = Vector2(392, 213)
+item_type = 5
+
+[node name="Item4" parent="." instance=ExtResource("5_o70eo")]
+position = Vector2(448, 137)
+item_type = 1
+
+[node name="Item5" parent="." instance=ExtResource("5_o70eo")]
+position = Vector2(284, 83)
+item_type = 1
