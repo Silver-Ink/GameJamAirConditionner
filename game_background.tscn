@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy32kwsvbno7w"]
+
+[ext_resource type="Theme" uid="uid://b3qn60h1iw1g" path="res://main_screen.tres" id="1_21tps"]
+[ext_resource type="Script" path="res://game_background.gd" id="1_xjjfn"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e0nl6"]
+thickness = 6
+
+[sub_resource type="Theme" id="Theme_34864"]
+Label/font_sizes/font_size = 20
+
+[node name="GameBackground" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xjjfn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_21tps")
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Line2D" type="HSeparator" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_e0nl6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_34864")
+
+[node name="Left" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Time" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Left"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Left/Time"]
+layout_mode = 2
+text = "Time :"
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Left/Time"]
+layout_mode = 2
+
+[node name="BallPoints" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Left"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Left/BallPoints"]
+layout_mode = 2
+text = "Points :"
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Left/BallPoints"]
+layout_mode = 2
+
+[node name="Right" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="Time" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Right"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Right/Time"]
+layout_mode = 2
+text = "Time :"
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Right/Time"]
+layout_mode = 2
+
+[node name="PenPoints" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Right"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Right/PenPoints"]
+layout_mode = 2
+text = "Points :"
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Right/PenPoints"]
+layout_mode = 2
+
+[node name="WallCounter" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Right"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Right/WallCounter"]
+layout_mode = 2
+text = "Walls :"
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Right/WallCounter"]
+layout_mode = 2
