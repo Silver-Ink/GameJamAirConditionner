@@ -4,6 +4,7 @@ const _wall_rotation_possible_positions := 12
 const _wall_life_time := 10
 const _wall_place_cooldown := 2
 
+var _cursor : Cursor
 var _preview_wall : Wall
 var _wall_container : Node2D
 var _level_camera : Camera2D
@@ -12,8 +13,15 @@ var _can_place_wall : bool = true
 var _is_place_in_cooldown : bool = false
 
 var SC_wall_straight := preload("res://WallStraight.tscn")
+var SC_cursor := preload("res://Cursor.tscn")
 
 func _ready() -> void:
+	# Hide real cursor
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	_cursor = SC_cursor.instantiate()
+	add_child(_cursor)
+	
 	_preview_wall = SC_wall_straight.instantiate()
 	add_child(_preview_wall)
 	_preview_wall.set_to_preview_mode()
@@ -27,7 +35,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# Following mouse
-	_preview_wall.position = _level_camera.get_global_mouse_position() - position
+	var mouse_position = _level_camera.get_global_mouse_position() - position
+	_preview_wall.position = mouse_position
+	_cursor.position = mouse_position
+	
 	
 	# Handling input: wall placing
 	if (Input.is_action_just_pressed("place_wall")):
@@ -67,9 +78,11 @@ func _handle_wall_placeable(is_placeable : bool):
 		
 	if (is_placeable):
 		_preview_wall.modulate = Color(1,1,1,1)
+		_cursor.set_to_regular()
 		_can_place_wall = true
 	else:
 		_preview_wall.modulate = Color(1,0,0,1)
+		_cursor.set_to_illegal()
 		_can_place_wall = false
 
 func _handle_placing_cooldown(is_in_cooldown : bool):
@@ -77,5 +90,6 @@ func _handle_placing_cooldown(is_in_cooldown : bool):
 	
 	if (is_in_cooldown):
 		_preview_wall.modulate = Color(1,1,0,1)
+		_cursor.set_to_dead()
 	else:
 		_handle_wall_placeable(_can_place_wall) # If there's no cooldown, check if there's impossible placement

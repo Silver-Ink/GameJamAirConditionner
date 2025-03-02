@@ -25,6 +25,7 @@ func set_to_preview_mode():
 	collision.set_deferred("disabled", true)
 	
 	_wall_sprite.modulate.a = 0.3
+	_wall_sprite.set_z_index(3500)
 
 func _on_preview_shape_body_entered(body: Node2D) -> void:
 	if (body == get_node("../../WorldCollisionStaticBody")):
